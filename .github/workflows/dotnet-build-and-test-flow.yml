@@ -33,7 +33,7 @@ jobs:
       run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
 
     - name: Upload coverage to Codecov
-      uses: dennisjensen95/coverage-scope
+      uses: dennisjensen95/coverage-scope@0.5.1
       with:
         coverage-filepath: cobertura.xml
         branch: main
