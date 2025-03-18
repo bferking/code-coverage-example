@@ -32,10 +32,14 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
 
-    - name: Upload coverage to Codecov
-      uses: dennisjensen95/coverage-scope@0.5.1
+    - name: Coverage Scope
+      uses: DennisJensen95/coverage-scope@v0.5.1
       with:
+        # The coverage file path to parse
         coverage-filepath: cobertura.xml
-        branch: main
-        threshold-total: 80
-        threshold-change: 90
+        # The branch to determine coverage for
+        branch: main # default is main
+        # The threshold to determine if coverage for the changed files is acceptable
+        threshold-change: 80 # default is 80
+        # The threshold to determine if total coverage is acceptable
+        threshold-total: 90 # default is 80
