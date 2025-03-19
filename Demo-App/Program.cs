@@ -10,7 +10,7 @@ public class Program
         }
         else
         {
-            Console.WriteLine("Hello!\n");
+            Console.WriteLine("Hello there!\n");
         }
     }
 }
