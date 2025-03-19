@@ -6,12 +6,12 @@ public class Program
     {
         if (args.Length > 0)
         {
-            Console.WriteLine($"Howdy, {args[0]}!\n");
+            Console.WriteLine($"Howdy, {args[0]}!{Environment.NewLine}");
             AnotherMethod();
         }
         else
         {
-            Console.WriteLine("Hello there!\n");
+            Console.WriteLine($"Hello there!{Environment.NewLine}");
         }
 
         Console.WriteLine("Complete");

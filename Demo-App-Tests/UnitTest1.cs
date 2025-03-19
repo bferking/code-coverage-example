@@ -16,6 +16,6 @@ public class UnitTest1
 
         // Assert
         var output = writer.GetStringBuilder().ToString().Trim();
-        Assert.Equal("Hello there!\n\r\nComplete", output);
+        Assert.Equal($"Hello there!{Environment.NewLine}{Environment.NewLine}Complete", output);
     }
 }
