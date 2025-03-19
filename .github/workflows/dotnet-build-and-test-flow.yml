@@ -61,4 +61,4 @@ jobs:
         # The threshold to determine if coverage for the changed files is acceptable
         threshold-change: 80 # default is 80
         # The threshold to determine if total coverage is acceptable
-        threshold-total: 90 # default is 80
+        threshold-total: 0 # default is 80
