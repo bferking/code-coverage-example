@@ -30,13 +30,13 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
 
     - name: Coverage Scope
       uses: DennisJensen95/coverage-scope@v0.5.1
       with:
         # The coverage file path to parse
-        coverage-filepath: coverage.cobertura.xml
+        cfilename: coverage/**/coverage.cobertura.xml
         # The branch to determine coverage for
         branch: main # default is main
         # The threshold to determine if coverage for the changed files is acceptable
