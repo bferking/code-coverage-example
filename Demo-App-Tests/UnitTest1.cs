@@ -12,10 +12,10 @@ public class UnitTest1
         Console.SetOut(writer);
 
         // Act
-        Program.Main(Array.Empty<string>());
+        Program.Main([]);
 
         // Assert
         var output = writer.GetStringBuilder().ToString().Trim();
-        Assert.Equal("Hello there!", output);
+        Assert.Equal("Hello there!\n\r\nComplete", output);
     }
 }
