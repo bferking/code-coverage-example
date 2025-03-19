@@ -36,7 +36,7 @@ jobs:
       uses: DennisJensen95/coverage-scope@v0.5.1
       with:
         # The coverage file path to parse
-        coverage-filepath: '**/coverage.cobertura.xml'
+        coverage-filepath: coverage.cobertura.xml
         # The branch to determine coverage for
         branch: main # default is main
         # The threshold to determine if coverage for the changed files is acceptable
