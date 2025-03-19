@@ -105,6 +105,6 @@ jobs:
         # The branch to determine coverage for
         branch: main # default is main
         # The threshold to determine if coverage for the changed files is acceptable
-        threshold-change: 80 # default is 80
+        threshold-change: 100 # default is 80
         # The threshold to determine if total coverage is acceptable
-        threshold-total: 0 # default is 80
+        threshold-total: 50 # default is 80
