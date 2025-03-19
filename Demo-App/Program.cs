@@ -7,7 +7,7 @@ public class Program
         if (args.Length > 0)
         {
             Console.WriteLine($"Howdy, {args[0]}!{Environment.NewLine}");
-            AnotherMethod();
+            AnotherMethod(args[0]);
         }
         else
         {
@@ -17,8 +17,11 @@ public class Program
         Console.WriteLine("Complete");
     }
 
-    private static void AnotherMethod()
+    private static void AnotherMethod(string name)
     {
-        Console.WriteLine("Calling from another method");
+        if (name.ToLower().Equals("test"))
+        {
+            Console.WriteLine("Calling from another method");
+        }
     }
 }
