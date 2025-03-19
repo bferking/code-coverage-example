@@ -40,7 +40,7 @@ jobs:
         # The GITHUB_TOKEN for this repo
         # repo_token: # default is ${{ github.token }}
         # Path to the cobertura file.
-        path: coverage/**/coverage.cobertura.xml # default is coverage.xml
+        path: coverage/*.xml # default is coverage.xml
         # If files with 100% should be skipped from report.
         skip_covered: false # default is true
         # Minimum allowed coverage percentage as an integer.
