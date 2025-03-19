@@ -6,11 +6,11 @@ public class Program
     {
         if (args.Length > 0)
         {
-            Console.WriteLine($"Hello, {args[0]}!");
+            Console.WriteLine($"Hello, {args[0]}!\n");
         }
         else
         {
-            Console.WriteLine("Hello!");
+            Console.WriteLine("Hello!\n");
         }
     }
 }
