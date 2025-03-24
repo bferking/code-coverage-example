@@ -44,7 +44,7 @@ jobs:
         threshold-change: 100 # default is 80
         # The threshold to determine if total coverage is acceptable
         threshold-total: 50 # default is 80
-      continue-on-error: true #setting to true so we can still upload our coverage report
+      # continue-on-error: true #setting to true so we can still upload our coverage report
 
     # - name: Add Coverage PR Comment
     #   uses: marocchino/sticky-pull-request-comment@v2
