@@ -33,6 +33,7 @@ jobs:
       run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
     - name: Coverage Scope
+      if: always()
       uses: DennisJensen95/coverage-scope@v0.5.1
       with:
         # The coverage file path to parse
@@ -53,6 +54,7 @@ jobs:
     #     path: code-coverage-results.md
 
     - name: ReportGenerator
+      if: always()
       uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
       with:
         reports: coverage/**/coverage.cobertura.xml
@@ -75,7 +77,4 @@ jobs:
     # - name: Publish coverage in build summary # Only applicable if 'MarkdownSummaryGithub' or one of the other Markdown report types is generated
     #   run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
     #   shell: bash
-
-    - name: Fail if coverage scope failed
-      if: steps.coverage-scope.outcome == 'failure'
-      run: exit 1
+    
