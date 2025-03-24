@@ -73,4 +73,5 @@ jobs:
     #   shell: bash
     
     - name: Print the output summary
+      if: always()
       run: echo "Report coverage json ${{ steps.codecoverage.outputs.summary }}"
