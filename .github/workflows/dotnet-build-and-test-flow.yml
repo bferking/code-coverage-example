@@ -35,6 +35,7 @@ jobs:
     - name: Coverage Scope
       if: always()
       uses: DennisJensen95/coverage-scope@v0.5.1
+      id: codecoverage
       with:
         # The coverage file path to parse
         coverage-filepath: coverage/**/coverage.cobertura.xml
@@ -71,3 +72,5 @@ jobs:
     #   run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
     #   shell: bash
     
+    - name: Print the output summary
+      run: echo "Report coverage json ${{ steps.codecoverage.outputs.summary }}"
