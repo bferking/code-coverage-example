@@ -76,3 +76,6 @@ jobs:
     #   run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
     #   shell: bash
 
+    - name: Fail if coverage scope failed
+      if: steps.coverage-scope.outcome == 'failure'
+      run: exit 1
