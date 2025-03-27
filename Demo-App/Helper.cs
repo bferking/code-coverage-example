@@ -1,6 +1,6 @@
 ﻿namespace Demo_App;
 
-internal class Helper
+public class Helper
 {
     public void AnotherMethod(string name)
     {
