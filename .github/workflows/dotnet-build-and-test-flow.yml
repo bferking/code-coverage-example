@@ -40,7 +40,7 @@ jobs:
         # A GitHub token to write comments and write the badge to the wiki.
         github-token:  ${{ secrets.GITHUB_TOKEN }}
         # Path of the json-summary file to analyze.
-        coverage-filename: coverage/**/coverage.json # optional, default is coverage/coverage-summary.json
+        coverage-filename: code-coverage-example/**/coverage.json # optional, default is coverage/coverage-summary.json
         # Name of the json file containing the repository's default branch json-summary stored in the repo wiki.
         # base-summary-filename: # optional, default is base-summary.json
         # If true, it will not fail even if the current branch's coverage is lower than the default branch's coverage.
