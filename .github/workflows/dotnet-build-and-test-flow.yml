@@ -38,7 +38,7 @@ jobs:
       uses: GreatWizard/coverage-diff-action@v1.0.8
       with:
         # A GitHub token to write comments and write the badge to the wiki.
-        # github-token: 
+        github-token:  ${{ secrets.GITHUB_TOKEN }}
         # Path of the json-summary file to analyze.
         coverage-filename: coverage/**/coverage.cobertura.xml # optional, default is coverage/coverage-summary.json
         # Name of the json file containing the repository's default branch json-summary stored in the repo wiki.
