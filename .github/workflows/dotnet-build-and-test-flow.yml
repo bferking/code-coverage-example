@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
     - name: Coverage Diff
       # You may pin to the exact commit or the version.
@@ -40,7 +40,7 @@ jobs:
         # A GitHub token to write comments and write the badge to the wiki.
         github-token:  ${{ secrets.GITHUB_TOKEN }}
         # Path of the json-summary file to analyze.
-        coverage-filename: coverage/**/coverage.cobertura.xml # optional, default is coverage/coverage-summary.json
+        coverage-filename: coverage/**/coverage-summary.json # optional, default is coverage/coverage-summary.json
         # Name of the json file containing the repository's default branch json-summary stored in the repo wiki.
         # base-summary-filename: # optional, default is base-summary.json
         # If true, it will not fail even if the current branch's coverage is lower than the default branch's coverage.
