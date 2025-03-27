@@ -6,11 +6,14 @@ public class Program
     {
         if (args.Length > 0)
         {
-            Console.WriteLine($"Hello, {args[0]}!");
+            Console.WriteLine($"Howdy, {args[0]}!{Environment.NewLine}");
+            Helper.AnotherMethod(args[0]);
         }
         else
         {
-            Console.WriteLine("Hello!");
+            Console.WriteLine($"Hello there!{Environment.NewLine}");
         }
+
+        Console.WriteLine("Complete");
     }
 }

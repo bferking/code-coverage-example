@@ -4,25 +4,48 @@ namespace Demo_App_Tests;
 
 public class UnitTest1
 {
-    // Will add back later
-    //[Fact]
-    //public void NoArguments_Test()
-    //{
-    //    // Arrange
-    //    var writer = new StringWriter();
-    //    Console.SetOut(writer);
+   [Fact]
+    public void NoArguments_Test()
+    {
+        // Arrange
+        var writer = new StringWriter();
+        Console.SetOut(writer);
 
-    //    // Act
-    //    Program.Main(Array.Empty<string>());
+        // Act
+        Program.Main([]);
 
-    //    // Assert
-    //    var output = writer.GetStringBuilder().ToString().Trim();
-    //    Assert.Equal("Hello!", output);
-    //}
+        // Assert
+        var output = writer.GetStringBuilder().ToString().Trim();
+        Assert.Equal($"Hello there!{Environment.NewLine}{Environment.NewLine}Complete", output);
+    }
 
     [Fact]
-    public void Bad_Test()
+    public void OneArguments_Test()
     {
-        Assert.Equal(true, true);
+        // Arrange
+        var writer = new StringWriter();
+        Console.SetOut(writer);
+
+        // Act
+        Program.Main(["UNIT TEST"]);
+
+        // Assert
+        var output = writer.GetStringBuilder().ToString().Trim();
+        Assert.Equal($"Howdy, UNIT TEST!{Environment.NewLine}{Environment.NewLine}Complete", output);
+    }
+
+    [Fact]
+    public void OneArguments_Test_Expect_additional()
+    {
+        // Arrange
+        var writer = new StringWriter();
+        Console.SetOut(writer);
+
+        // Act
+        Program.Main(["TEST"]);
+
+        // Assert
+        var output = writer.GetStringBuilder().ToString().Trim();
+        Assert.Equal($"Howdy, TEST!{Environment.NewLine}{Environment.NewLine}Calling from another method{Environment.NewLine}Complete", output);
     }
 }
