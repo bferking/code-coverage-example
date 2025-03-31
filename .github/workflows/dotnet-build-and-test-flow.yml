@@ -88,7 +88,7 @@ jobs:
       if: always()
       uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
       with:
-        reports: coverage/**/coverage.cobertura.xml
+        reports: coverage.cobertura.xml
         targetdir: 'coveragereport'
         toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
 
