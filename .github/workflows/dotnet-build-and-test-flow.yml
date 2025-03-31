@@ -32,42 +32,49 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura --results-directory ./coverage
 
-    - name: Coverage Diff
-      # You may pin to the exact commit or the version.
-      # uses: GreatWizard/coverage-diff-action@a8493a0691192563017ec317e9879c9a17a4d36c
-      uses: GreatWizard/coverage-diff-action@v1.0.8
-      with:
-        # A GitHub token to write comments and write the badge to the wiki.
-        github-token:  ${{ secrets.GITHUB_TOKEN }}
-        # Path of the json-summary file to analyze.
-        coverage-filename: code-coverage-example/**/coverage.json # optional, default is coverage/coverage-summary.json
-        # Name of the json file containing the repository's default branch json-summary stored in the repo wiki.
-        # base-summary-filename: # optional, default is base-summary.json
-        # If true, it will not fail even if the current branch's coverage is lower than the default branch's coverage.
-        allowed-to-fail: true # optional, default is false
-        # Whether or not a badge will be generated and stored.
-        badge-enabled: false # optional, default is true
-        # Name of the json file containing badge informations stored in the repo wiki.
-        # badge-filename: # optional, default is coverage-diff-badge.json
-        # If the coverage percentage is above or equal to this value, the badge will be green.
-        # badge-threshold-green: # optional, default is 100
-        # If the coverage percentage is not green and above or equal to this value, the badge will be orange. Otherwise it will be red.
-        # badge-threshold-orange: # optional, default is 70
+    # - name: Coverage Diff
+    #   # You may pin to the exact commit or the version.
+    #   # uses: GreatWizard/coverage-diff-action@a8493a0691192563017ec317e9879c9a17a4d36c
+    #   uses: GreatWizard/coverage-diff-action@v1.0.8
+    #   with:
+    #     # A GitHub token to write comments and write the badge to the wiki.
+    #     github-token:  ${{ secrets.GITHUB_TOKEN }}
+    #     # Path of the json-summary file to analyze.
+    #     coverage-filename: code-coverage-example/**/coverage.json # optional, default is coverage/coverage-summary.json
+    #     # Name of the json file containing the repository's default branch json-summary stored in the repo wiki.
+    #     # base-summary-filename: # optional, default is base-summary.json
+    #     # If true, it will not fail even if the current branch's coverage is lower than the default branch's coverage.
+    #     allowed-to-fail: true # optional, default is false
+    #     # Whether or not a badge will be generated and stored.
+    #     badge-enabled: false # optional, default is true
+    #     # Name of the json file containing badge informations stored in the repo wiki.
+    #     # badge-filename: # optional, default is coverage-diff-badge.json
+    #     # If the coverage percentage is above or equal to this value, the badge will be green.
+    #     # badge-threshold-green: # optional, default is 100
+    #     # If the coverage percentage is not green and above or equal to this value, the badge will be orange. Otherwise it will be red.
+    #     # badge-threshold-orange: # optional, default is 70
           
 
-    # - name: Coverage Scope
-    #   if: always()
-    #   uses: DennisJensen95/coverage-scope@v0.5.1
-    #   id: codecoverage
-    #   with:
-    #     # The coverage file path to parse
-    #     coverage-filepath: coverage/**/coverage.cobertura.xml
-    #     # The branch to determine coverage for
-    #     branch: main # default is main
-    #     # The threshold to determine if coverage for the changed files is acceptable
-    #     threshold-change: 100 # default is 80
-    #     # The threshold to determine if total coverage is acceptable
-    #     threshold-total: 50 # default is 80
+    - name: Coverage Scope
+      if: always()
+      uses: DennisJensen95/coverage-scope@v0.5.1
+      id: codecoverage
+      with:
+        # The coverage file path to parse
+        coverage-filepath: coverage/**/coverage.cobertura.xml
+        # The branch to determine coverage for
+        branch: main # default is main
+        # The threshold to determine if coverage for the changed files is acceptable
+        threshold-change: 100 # default is 80
+        # The threshold to determine if total coverage is acceptable
+        threshold-total: 50 # default is 80
+
+    - name: ABC
+      if: always()
+      uses: 5monkeys/cobertura-action@master
+      with:
+        path: coverage/**/coverage.cobertura.xml
+        minimum_coverage: 75
 
     - name: ReportGenerator
       if: always()
