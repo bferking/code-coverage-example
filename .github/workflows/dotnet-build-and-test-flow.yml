@@ -54,26 +54,19 @@ jobs:
     #     # If the coverage percentage is not green and above or equal to this value, the badge will be orange. Otherwise it will be red.
     #     # badge-threshold-orange: # optional, default is 70
           
-
-    # - name: Coverage Scope
-    #   if: always()
-    #   uses: DennisJensen95/coverage-scope@v0.5.1
-    #   id: codecoverage
-    #   with:
-    #     # The coverage file path to parse
-    #     coverage-filepath: coverage/**/coverage.cobertura.xml
-    #     # The branch to determine coverage for
-    #     branch: main # default is main
-    #     # The threshold to determine if coverage for the changed files is acceptable
-    #     threshold-change: 100 # default is 80
-    #     # The threshold to determine if total coverage is acceptable
-        # threshold-total: 50 # default is 80
-
-    - name: Display coverage
-      uses: ewjoachim/coverage-comment-action@v1
+    - name: Coverage Scope
+      if: always()
+      uses: DennisJensen95/coverage-scope@v0.5.1
+      id: codecoverage
       with:
-        GITHUB_TOKEN: ${{ github.token }}
-        COVERAGE_FILE: coverage.cobertura.xml
+        # The coverage file path to parse
+        coverage-filepath: coverage/**/coverage.cobertura.xml
+        # The branch to determine coverage for
+        branch: main # default is main
+        # The threshold to determine if coverage for the changed files is acceptable
+        threshold-change: 100 # default is 80
+        # The threshold to determine if total coverage is acceptable
+        threshold-total: 50 # default is 80
 
     # - name: ABC
     #   if: always()
