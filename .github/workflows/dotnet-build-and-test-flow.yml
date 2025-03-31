@@ -32,6 +32,14 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
+    - name: Coverage Diff
+      uses: GreatWizard/coverage-diff-action@v1.0.8
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        coverage-filename: coverage/**/coverage.json
+        allowed-to-fail: true
+        badge-enabled: false
+
     # - name: Coverage Diff
     #   # You may pin to the exact commit or the version.
     #   # uses: GreatWizard/coverage-diff-action@a8493a0691192563017ec317e9879c9a17a4d36c
