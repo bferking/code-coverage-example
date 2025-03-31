@@ -61,7 +61,7 @@ jobs:
       id: codecoverage
       with:
         # The coverage file path to parse
-        coverage-filepath: coverage/**/coverage.cobertura.xml
+        coverage-filepath: code-coverage-example/**/coverage.cobertura.xml
         # The branch to determine coverage for
         branch: main # default is main
         # The threshold to determine if coverage for the changed files is acceptable
@@ -73,7 +73,7 @@ jobs:
       if: always()
       uses: 5monkeys/cobertura-action@v14
       with:
-        path: coverage/**/coverage.cobertura.xml
+        path: code-coverage-example/**/coverage.cobertura.xml
         minimum_coverage: 75
 
     - name: ReportGenerator
