@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura --results-directory ./coverage
+      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
     # - name: Coverage Diff
     #   # You may pin to the exact commit or the version.
@@ -61,7 +61,7 @@ jobs:
       id: codecoverage
       with:
         # The coverage file path to parse
-        coverage-filepath: TestResults/**/coverage.cobertura.xml
+        coverage-filepath: coverage/**/coverage.cobertura.xml
         # The branch to determine coverage for
         branch: main # default is main
         # The threshold to determine if coverage for the changed files is acceptable
@@ -73,14 +73,14 @@ jobs:
       if: always()
       uses: 5monkeys/cobertura-action@v14
       with:
-        path: TestResults/**/coverage.cobertura.xml
+        path: coverage/**/coverage.cobertura.xml
         minimum_coverage: 75
 
     - name: ReportGenerator
       if: always()
       uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
       with:
-        reports: TestResults/**/coverage.cobertura.xml
+        reports: coverage/**/coverage.cobertura.xml
         targetdir: 'coveragereport'
         toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
 
