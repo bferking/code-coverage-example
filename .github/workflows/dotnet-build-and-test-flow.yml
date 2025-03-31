@@ -73,8 +73,10 @@ jobs:
       if: always()
       uses: 5monkeys/cobertura-action@v14
       with:
-        path: coverage/**/coverage.cobertura.xml
+        path: coverage/**/*.xml
         minimum_coverage: 75
+        only_changed_files: true
+        show_missing: true
 
     - name: ReportGenerator
       if: always()
