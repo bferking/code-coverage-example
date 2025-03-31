@@ -69,14 +69,20 @@ jobs:
         # The threshold to determine if total coverage is acceptable
         threshold-total: 50 # default is 80
 
-    - name: ABC
-      if: always()
-      uses: 5monkeys/cobertura-action@v14
+    - name: Display coverage
+      uses: ewjoachim/coverage-comment-action@v1
       with:
-        path: coverage/**/*.xml
-        minimum_coverage: 75
-        only_changed_files: true
-        show_missing: true
+        GITHUB_TOKEN: ${{ github.token }}
+        COVERAGE_FILE: coverage/**/coverage.cobertura.xml
+
+    # - name: ABC
+    #   if: always()
+    #   uses: 5monkeys/cobertura-action@v14
+    #   with:
+    #     path: coverage/**/*.xml
+    #     minimum_coverage: 75
+    #     only_changed_files: true
+    #     show_missing: true
 
     - name: ReportGenerator
       if: always()
