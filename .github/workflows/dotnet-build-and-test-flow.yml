@@ -101,6 +101,7 @@ jobs:
         path: coveragereport # Directory containing files to upload
 
     - name: Publish coverage in build summary # Testing to see
+      if: always()
       run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
       shell: bash
     
