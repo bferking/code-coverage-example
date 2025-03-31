@@ -102,6 +102,6 @@ jobs:
 
     - name: Publish coverage in build summary # Testing to see
       if: always()
-      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
+      run: cat coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
       shell: bash
     
