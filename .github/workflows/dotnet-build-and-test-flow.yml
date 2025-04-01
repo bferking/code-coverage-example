@@ -77,18 +77,18 @@ jobs:
     #     # The threshold to determine if total coverage is acceptable
     #     threshold-total: 50 # default is 80
 
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: coverage/**/coverage.cobertura.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
+    # - name: Code Coverage Report
+    #   uses: irongut/CodeCoverageSummary@v1.3.0
+    #   with:
+    #     filename: coverage/**/coverage.cobertura.xml
+    #     badge: true
+    #     fail_below_min: true
+    #     format: markdown
+    #     hide_branch_rate: false
+    #     hide_complexity: true
+    #     indicators: true
+    #     output: both
+    #     thresholds: '60 80'
 
     - name: ReportGenerator
       if: always()
@@ -97,7 +97,7 @@ jobs:
         reports: coverage/**/coverage.cobertura.xml
         targetdir: 'coveragereport'
         toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
-        reporttypes: 'HtmlInline;Cobertura;MarkdownSummary'
+        reporttypes: 'HtmlInline;Cobertura'
 
     - name: Upload coverage report artifact
       if: always()
@@ -106,8 +106,8 @@ jobs:
         name: CoverageReport # Artifact name        
         path: coveragereport # Directory containing files to upload
 
-    - name: Publish coverage in build summary # Testing to see
-      if: always()
-      run: cat coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
-      shell: bash
+    # - name: Publish coverage in build summary # Testing to see
+    #   if: always()
+    #   run: cat coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY # Adjust path and filename if necessary
+    #   shell: bash
     
