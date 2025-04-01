@@ -60,8 +60,8 @@ jobs:
         # coverage summary in the PR comment.
         coverage-summary-title: "Code Coverage Summary"
         storage-subdirectory: "Demo-App-Diff"
-        new-uncovered-statements-failure: false
-        coverage-reduction-failure: false
+        new-uncovered-statements-failure: true
+        coverage-reduction-failure: true
         token: ${{ secrets.GH_PAT }}
 
     # - name: Coverage Scope
