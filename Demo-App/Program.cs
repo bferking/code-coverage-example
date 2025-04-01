@@ -4,10 +4,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        var helper = new Helper();
         if (args.Length > 0)
         {
             Console.WriteLine($"Howdy, {args[0]}!{Environment.NewLine}");
-            Helper.AnotherMethod(args[0]);
+            helper.AnotherMethod(args[0]);
         }
         else
         {
