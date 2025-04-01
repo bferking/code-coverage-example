@@ -30,22 +30,21 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
-    
-    - name: Coverage Scope
-      if: always()
-      uses: DennisJensen95/coverage-scope@v0.5.1
-      id: codecoverage
+      run: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
+     
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        # The coverage file path to parse
-        coverage-filepath: coverage/**/coverage.cobertura.xml
-        # The branch to determine coverage for
-        branch: main # default is main
-        # The threshold to determine if coverage for the changed files is acceptable
-        threshold-change: 100 # default is 80
-        # The threshold to determine if total coverage is acceptable
-        threshold-total: 50 # default is 80
-        
+        filename: coverage/**/coverage.cobertura.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+
     - name: ReportGenerator
       if: always()
       uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
