@@ -61,6 +61,7 @@ jobs:
         coverage-summary-title: "Code Coverage Summary"
         storage-subdirectory: "Demo-App-Diff"
         new-uncovered-statements-failure: true
+        token: ${{ secrets.GH_PAT }}
 
     # - name: Coverage Scope
     #   if: always()
