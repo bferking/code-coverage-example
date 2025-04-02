@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.8461" branch-rate="0.8332999999999999" version="1.9" timestamp="1743543526" lines-covered="11" lines-valid="13" branches-covered="5" branches-valid="6">
+<coverage line-rate="0.8571" branch-rate="0.8332999999999999" version="1.9" timestamp="1743601393" lines-covered="12" lines-valid="14" branches-covered="5" branches-valid="6">
   <sources>
     <source>/home/runner/work/code-coverage-example/code-coverage-example/Demo-App/</source>
   </sources>
   <packages>
-    <package name="Demo-App" line-rate="0.8461" branch-rate="0.8332999999999999" complexity="7">
+    <package name="Demo-App" line-rate="0.8571" branch-rate="0.8332999999999999" complexity="8">
       <classes>
         <class name="Demo_App.Helper" filename="Helper.cs" line-rate="0.8" branch-rate="0.75" complexity="4">
           <methods>
@@ -42,16 +42,22 @@
             <line number="15" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="Demo_App.HowdyService" filename="HowdyService.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Demo_App.HowdyService" filename="HowdyService.cs" line-rate="0.5" branch-rate="1" complexity="2">
           <methods>
-            <method name="Howdy" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="Howdy" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="0" branch="False" />
+                <line number="8" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="Hello" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="0" branch="False" />
+            <line number="8" hits="1" branch="False" />
+            <line number="13" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Demo_App.Program" filename="Program.cs" line-rate="1" branch-rate="1" complexity="2">
