@@ -76,7 +76,7 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageLocations: |
-          coverage/**/coverage.cobertura.xml
+          coverage/**/coverage.info:lcov
           
     - name: Upload coverage reports to Codecov
       if: always()
