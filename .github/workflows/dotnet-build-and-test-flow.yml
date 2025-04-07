@@ -69,7 +69,14 @@ jobs:
         # Github token to use to publish the check
         token: ${{ secrets.GH_PAT }}
 
-
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v9.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageLocations: |
+          coverage/**/coverage.cobertura.xml
+          
     - name: Upload coverage reports to Codecov
       if: always()
       uses: codecov/codecov-action@v5
