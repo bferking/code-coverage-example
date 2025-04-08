@@ -80,13 +80,13 @@ jobs:
           coverage/**/coverage.info:lcov
         coverageCommand: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
           
-    - name: Upload coverage reports to Codecov
-      if: always()
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        verbose: true
-        files: ./coverage.cobertura.xml
+    # - name: Upload coverage reports to Codecov
+    #   if: always()
+    #   uses: codecov/codecov-action@v5
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     verbose: true
+    #     files: ./coverage.cobertura.xml
 
     - name: ReportGenerator
       if: always()
