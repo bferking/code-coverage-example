@@ -31,44 +31,44 @@ jobs:
     - name: Run tests
       run: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
-    - name: Produce the coverage report
-      uses: insightsengineering/coverage-action@v2
-      with:
-        # Path to the Cobertura XML report.
-        path: coverage/**/coverage.cobertura.xml
-        # Minimum total coverage, if you want to the
-        # workflow to enforce it as a standard.
-        # This has no effect if the `fail` arg is set to `false`.
-        threshold: 75
-        # Fail the workflow if the minimum code coverage
-        # reuqirements are not satisfied.
-        fail: true
-        # Publish the rendered output as a PR comment
-        publish: true
-        # Create a coverage diff report.
-        diff: true
-        # Branch to diff against.
-        # Compare the current coverage to the coverage
-        # determined on this branch.
-        diff-branch: main
-        # This is where the coverage reports for the
-        # `diff-branch` are stored.
-        # Branch is created if it doesn't already exist'.
-        diff-storage: _xml_coverage_reports
-        # A custom title that can be added to the code
-        # coverage summary in the PR comment.
-        coverage-summary-title: "Code Coverage Summary"
-        # Subdirectory in the diff-storage branch
-        # where the XML reports will be stored
-        storage-subdirectory: "Demo-App-Diff"
-        # Fail the action if any new uncovered
-        # statements are introduced compared to the `diff-branch`
-        new-uncovered-statements-failure: true
-        # Fail the action if code coverage decreased
-        # compared to the diff-branch is decreased
-        coverage-reduction-failure: true
-        # Github token to use to publish the check
-        token: ${{ secrets.GH_PAT }}
+    # - name: Produce the coverage report
+    #   uses: insightsengineering/coverage-action@v2
+    #   with:
+    #     # Path to the Cobertura XML report.
+    #     path: coverage/**/coverage.cobertura.xml
+    #     # Minimum total coverage, if you want to the
+    #     # workflow to enforce it as a standard.
+    #     # This has no effect if the `fail` arg is set to `false`.
+    #     threshold: 75
+    #     # Fail the workflow if the minimum code coverage
+    #     # reuqirements are not satisfied.
+    #     fail: true
+    #     # Publish the rendered output as a PR comment
+    #     publish: true
+    #     # Create a coverage diff report.
+    #     diff: true
+    #     # Branch to diff against.
+    #     # Compare the current coverage to the coverage
+    #     # determined on this branch.
+    #     diff-branch: main
+    #     # This is where the coverage reports for the
+    #     # `diff-branch` are stored.
+    #     # Branch is created if it doesn't already exist'.
+    #     diff-storage: _xml_coverage_reports
+    #     # A custom title that can be added to the code
+    #     # coverage summary in the PR comment.
+    #     coverage-summary-title: "Code Coverage Summary"
+    #     # Subdirectory in the diff-storage branch
+    #     # where the XML reports will be stored
+    #     storage-subdirectory: "Demo-App-Diff"
+    #     # Fail the action if any new uncovered
+    #     # statements are introduced compared to the `diff-branch`
+    #     new-uncovered-statements-failure: true
+    #     # Fail the action if code coverage decreased
+    #     # compared to the diff-branch is decreased
+    #     coverage-reduction-failure: true
+    #     # Github token to use to publish the check
+    #     token: ${{ secrets.GH_PAT }}
 
     - name: CodeClimate Test & publish code coverage
       if: always()
