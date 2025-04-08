@@ -17,4 +17,9 @@ public class HowdyService
     {
         return "Hola " + name;
     }
+
+    public string Goodbye(string name)
+    {
+        return "Goodbye " + name;
+    }
 }
