@@ -70,14 +70,15 @@ jobs:
         # Github token to use to publish the check
         token: ${{ secrets.GH_PAT }}
 
-    - name: Test & publish code coverage
+    - name: CodeClimate Test & publish code coverage
       if: always()
-      uses: paambaati/codeclimate-action@v9.0.0
+      uses: paambaati/codeclimate-action@v9
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageLocations: |
           coverage/**/coverage.info:lcov
+        coverageCommand: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
           
     - name: Upload coverage reports to Codecov
       if: always()
