@@ -13,7 +13,7 @@ public class HowdyServiceTests : IDisposable
 
     public void Dispose()
     {
-        
+
     }
 
     [Fact]
@@ -23,7 +23,14 @@ public class HowdyServiceTests : IDisposable
         var result = _howdyService.Howdy("UNIT TEST");
         // Assert
         Assert.Equal("Howdy UNIT TEST", result);
-   }
+    }
+
+    [Fact]
+    public void Howdy_Hello_Test()
+    {
+        var result = _howdyService.Hello("UNIT TEST");
+        Assert.Equal("Hello UNIT TEST", result);
+    }
 
     [Fact]
     public void Howdy_Hola_Test()
