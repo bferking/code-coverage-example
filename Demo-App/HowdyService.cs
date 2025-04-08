@@ -1,16 +1,20 @@
-﻿namespace Demo_App
+﻿namespace Demo_App;
+
+public class HowdyService
 {
-    public class HowdyService
+
+    public string Howdy(string name)
     {
+        return "Howdy " + name;
+    }
 
-        public string Howdy(string name)
-        {
-            return "Howdy " + name;
-        }
+    public string Hello(string name)
+    {
+        return "Hello " + name;
+    }
 
-        public string Hello(string name)
-        {
-            return "Hello " + name;
-        }
+    public string Hola(string name)
+    {
+        return "Hola " + name;
     }
 }
