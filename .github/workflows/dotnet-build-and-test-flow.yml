@@ -84,6 +84,8 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        verbose: true
+        files: ./coverage.cobertura.xml
 
     - name: ReportGenerator
       if: always()
