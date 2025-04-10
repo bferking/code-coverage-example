@@ -70,6 +70,8 @@ jobs:
     #     # Github token to use to publish the check
     #     token: ${{ secrets.GH_PAT }}
 
+
+
     - name: CodeClimate Test & publish code coverage
       if: always()
       uses: paambaati/codeclimate-action@v9
@@ -79,7 +81,18 @@ jobs:
         coverageLocations: |
           coverage/**/coverage.cobertura.xml:cobertura
         coverageCommand: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
-          
+    
+    - name: Download and Upload Coverage to Code Climate
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.json coverage/lcov.info
+        ./cc-test-reporter upload-coverage
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        GIT_BRANCH: ${{ github.ref_name }}
+        GIT_COMMIT: ${{ github.sha }}
+        
     # - name: Upload coverage reports to Codecov
     #   if: always()
     #   uses: codecov/codecov-action@v5
