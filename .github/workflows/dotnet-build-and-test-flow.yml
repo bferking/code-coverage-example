@@ -72,15 +72,15 @@ jobs:
 
 
 
-    - name: CodeClimate Test & publish code coverage
-      if: always()
-      uses: paambaati/codeclimate-action@v9
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageLocations: |
-          coverage/**/coverage.cobertura.xml:cobertura
-        coverageCommand: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
+    # - name: CodeClimate Test & publish code coverage
+    #   if: always()
+    #   uses: paambaati/codeclimate-action@v9
+    #   env:
+    #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    #   with:
+    #     coverageLocations: |
+    #       coverage/**/coverage.cobertura.xml:cobertura
+    #     coverageCommand: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
     
     - name: Download and Upload Coverage to Code Climate
       run: |
