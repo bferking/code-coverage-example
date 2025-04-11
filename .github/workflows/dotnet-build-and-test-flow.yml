@@ -29,7 +29,8 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
+      run: dotnet test Demo-App.sln --no-build --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover results-directory ./coverage
+      # --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
     # - name: Generate Code Coverage report
     #   id: code-coverage
@@ -58,20 +59,21 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
-        files: ./coverage.cobertura.xml
+        files: ./coverage.opencover.xml
+        # files: ./coverage.cobertura.xml
 
-    - name: ReportGenerator
-      if: always()
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
-      with:
-        reports: coverage/**/coverage.cobertura.xml
-        targetdir: 'coveragereport'
-        toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
-        reporttypes: 'HtmlInline;Cobertura'
+    # - name: ReportGenerator
+    #   if: always()
+    #   uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
+    #   with:
+    #     reports: coverage/**/coverage.cobertura.xml
+    #     targetdir: 'coveragereport'
+    #     toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
+    #     reporttypes: 'HtmlInline;Cobertura'
 
-    - name: Upload coverage report artifact
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: CoverageReport # Artifact name        
-        path: coveragereport # Directory containing files to upload    
+    # - name: Upload coverage report artifact
+    #   if: always()
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: CoverageReport # Artifact name        
+    #     path: coveragereport # Directory containing files to upload    
