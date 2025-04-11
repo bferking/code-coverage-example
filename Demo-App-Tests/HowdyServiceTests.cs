@@ -38,4 +38,11 @@ public class HowdyServiceTests : IDisposable
         var result = _howdyService.Hola("UNIT TEST");
         Assert.Equal("Hola UNIT TEST", result);
     }
+
+    [Fact]
+    public void Howdy_Greeting_Morning_Test()
+    {
+        var result = _howdyService.Greeting(true, "UNIT TEST");
+        Assert.Equal("Good morning UNIT TEST", result);
+    }
 }
