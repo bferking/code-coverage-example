@@ -29,7 +29,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover results-directory ./coverage
+      run: dotnet test ./Demo-App-Tests/Demo-App-Tests.csproj --no-build --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover results-directory ./coverage
       # --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
     # - name: Generate Code Coverage report
