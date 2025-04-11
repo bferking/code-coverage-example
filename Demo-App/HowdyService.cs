@@ -17,4 +17,21 @@ public class HowdyService
     {
         return "Hola " + name;
     }
+
+    public string Goodbye(string name)
+    {
+        return "Goodbye " + name;
+    }
+
+    public string Greeting(bool isMorning, string name)
+    {
+        if (isMorning)
+        {
+            return "Good morning " + name;
+        }
+        else
+        {
+            return "Good evening " + name;
+        }
+    }
 }

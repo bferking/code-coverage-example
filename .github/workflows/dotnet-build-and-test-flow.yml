@@ -29,76 +29,50 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
+      run: dotnet test ./Demo-App.sln --no-build --configuration Release --collect:"XPlat Code Coverage;Format=json,lcov,cobertura" --results-directory ./coverage
 
-    - name: Produce the coverage report
-      uses: insightsengineering/coverage-action@v2
-      with:
-        # Path to the Cobertura XML report.
-        path: coverage/**/coverage.cobertura.xml
-        # Minimum total coverage, if you want to the
-        # workflow to enforce it as a standard.
-        # This has no effect if the `fail` arg is set to `false`.
-        threshold: 75
-        # Fail the workflow if the minimum code coverage
-        # reuqirements are not satisfied.
-        fail: true
-        # Publish the rendered output as a PR comment
-        publish: true
-        # Create a coverage diff report.
-        diff: true
-        # Branch to diff against.
-        # Compare the current coverage to the coverage
-        # determined on this branch.
-        diff-branch: main
-        # This is where the coverage reports for the
-        # `diff-branch` are stored.
-        # Branch is created if it doesn't already exist'.
-        diff-storage: _xml_coverage_reports
-        # A custom title that can be added to the code
-        # coverage summary in the PR comment.
-        coverage-summary-title: "Code Coverage Summary"
-        # Subdirectory in the diff-storage branch
-        # where the XML reports will be stored
-        storage-subdirectory: "Demo-App-Diff"
-        # Fail the action if any new uncovered
-        # statements are introduced compared to the `diff-branch`
-        new-uncovered-statements-failure: true
-        # Fail the action if code coverage decreased
-        # compared to the diff-branch is decreased
-        coverage-reduction-failure: true
-        # Github token to use to publish the check
-        token: ${{ secrets.GH_PAT }}
+    # - name: Generate Code Coverage report
+    #   id: code-coverage
+    #   uses: barecheck/code-coverage-action@v1
+    #   with:
+    #     barecheck-github-app-token: ${{ secrets.BARECHECK_GITHUB_APP_TOKEN }}
+    #     lcov-file: "coverage/coverage.info" # Fixed path
+    #     send-summary-comment: true
+    #     show-annotations: "warning"
 
-    - name: Test & publish code coverage
-      if: always()
-      uses: paambaati/codeclimate-action@v9.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageLocations: |
-          coverage/**/coverage.info:lcov
-          
+
+    # - name: Download and Upload Coverage to Code Climate
+    #   run: |
+    #     curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    #     chmod +x ./cc-test-reporter
+    #     ./cc-test-reporter format-coverage -t lcov coverage/**/coverage.info
+    #     ./cc-test-reporter upload-coverage
+    #   env:
+    #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    #     GIT_BRANCH: ${{ github.ref_name }}
+    #     GIT_COMMIT: ${{ github.sha }}
+        
     - name: Upload coverage reports to Codecov
       if: always()
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
-        files: ./coverage.cobertura.xml
+        files: ./coverage.opencover.xml
+        # files: ./coverage.cobertura.xml
 
-    - name: ReportGenerator
-      if: always()
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
-      with:
-        reports: coverage/**/coverage.cobertura.xml
-        targetdir: 'coveragereport'
-        toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
-        reporttypes: 'HtmlInline;Cobertura'
+    # - name: ReportGenerator
+    #   if: always()
+    #   uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
+    #   with:
+    #     reports: coverage/**/coverage.cobertura.xml
+    #     targetdir: 'coveragereport'
+    #     toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
+    #     reporttypes: 'HtmlInline;Cobertura'
 
-    - name: Upload coverage report artifact
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: CoverageReport # Artifact name        
-        path: coveragereport # Directory containing files to upload    
+    # - name: Upload coverage report artifact
+    #   if: always()
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: CoverageReport # Artifact name        
+    #     path: coveragereport # Directory containing files to upload    
